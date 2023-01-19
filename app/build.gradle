@@ -14,20 +14,26 @@
  * limitations under the License.
  */
 
-apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
-apply plugin: 'kotlin-kapt'
-apply plugin: 'androidx.navigation.safeargs'
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-android-extensions'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id "androidx.navigation.safeargs"
+}
 
 android {
-    compileSdkVersion 30
+    namespace 'com.example.android.trackmysleepquality'
+    compileSdk 33
+
     defaultConfig {
         applicationId "com.example.android.trackmysleepquality"
-        minSdkVersion 19
-        targetSdkVersion 30
+        minSdk 21
+        targetSdk 33
         versionCode 1
         versionName "1.0"
+
         multiDexEnabled true
         vectorDrawables.useSupportLibrary = true
     }
@@ -42,6 +48,13 @@ android {
     buildFeatures {
         dataBinding true
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
 }
 
 dependencies {
@@ -55,8 +68,8 @@ dependencies {
     implementation "androidx.core:core-ktx:$version_core"
 
     // Room and Lifecycle dependencies
-    implementation "androidx.room:room-runtime:$version_room"
-    kapt "androidx.room:room-compiler:$version_room"
+    implementation "androidx.room:room-runtime:2.5.0" // version_room
+    kapt "androidx.room:room-compiler:2.5.0" // version_room
     implementation "androidx.lifecycle:lifecycle-extensions:$version_lifecycle_extensions"
 
     // Coroutines
@@ -64,8 +77,8 @@ dependencies {
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$version_coroutine"
 
     // Navigation
-    implementation "android.arch.navigation:navigation-fragment-ktx:$version_navigation"
-    implementation "android.arch.navigation:navigation-ui-ktx:$version_navigation"
+    implementation "androidx.navigation:navigation-fragment-ktx:$version_navigation"
+    implementation "androidx.navigation:navigation-ui-ktx:$version_navigation"
 
     // ViewModel and LiveData
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$version_lifecycle"
@@ -74,7 +87,7 @@ dependencies {
     implementation "androidx.room:room-ktx:$version_room"
 
     // Testing
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 }
