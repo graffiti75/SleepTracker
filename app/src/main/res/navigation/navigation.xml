@@ -50,5 +50,4 @@
             app:popUpTo="@+id/sleep_tracker_fragment"
             app:popUpToInclusive="true" />
     </fragment>
-
 </navigation>
